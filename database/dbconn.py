@@ -46,3 +46,15 @@ def dbInit():
         print(user)
 
     connection.close()
+
+def sqlExecute(sql):
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    
+    db_path = os.path.join(current_dir, 'sales.db')
+    
+    connection = sqlite3.connect(db_path)
+    cursor = connection.cursor()
+
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    return result
