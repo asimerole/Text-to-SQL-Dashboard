@@ -1,20 +1,66 @@
-# Text-to-SQL-Dashboard
+# 🤖 AI Corporate Analyst (Text-to-SQL Dashboard)
 
-English:
-Overview: A web interface where a store owner types: “Show the top 5 customers from Berlin by total purchases over the last month.” The AI translates this into SQL, a script sends a query to the database, and a clean table plus text output from the AI is displayed on the screen (for example: “Revenue from these customers totaled $4,500. I recommend offering them a discount on their next order”).
+![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)
+![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=flat&logo=streamlit&logoColor=white)
+![OpenAI](https://img.shields.io/badge/OpenAI-API-412991.svg)
+![SQLite](https://img.shields.io/badge/SQLite-003B57?style=flat&logo=sqlite&logoColor=white)
 
-Stack: Python, SQLite, OpenAI API (gpt-4o-mini), Streamlit (for the web).
+An intelligent B2B web dashboard that allows users to query a relational database using natural language. No SQL knowledge required. The system translates plain English into database queries, executes them, and returns a human-readable analytical answer.
 
-Why businesses need this: The business owner doesn’t have to wait for a report from an analyst or fiddle with Excel. Instant access to metrics in plain language.
+🔗 **[Live Demo](https://asimerole-text2sql.streamlit.app/)** 🔐 **Demo Password:** `demo123` *(Limited to 10 requests per session to prevent API abuse)*
 
-What this will showcase in your portfolio: Ability to work with system prompts (so the AI doesn’t hallucinate and writes clean code), database work, and creating a clean UI without any issues.
+---
 
+## 🎯 How It Works (The Two-Loop AI Architecture)
 
-Russian:
-Cуть: Веб-интерфейс, где владелец магазина пишет текстом: «Покажи топ-5 клиентов из Берлина по сумме покупок за последний месяц». ИИ переводит это в SQL, скрипт делает запрос в базу, и на экран выводится красивая табличка + текстовый вывод от ИИ (например: «Выручка по этим клиентам составила $4500. Рекомендую предложить им скидку на следующий заказ»).
+This project implements a reliable AI agent workflow:
+1. **User Input:** The user asks a business question (e.g., *"Who from Berlin spent more than 1000?"*).
+2. **AI Loop 1 (Text-to-SQL):** The OpenAI API (`gpt-4o-mini`) acts as a strict SQL developer, translating the prompt into a valid SQLite query based on the injected database schema.
+3. **Secure Execution:** The Python backend executes the generated SQL query locally against the database.
+4. **AI Loop 2 (Data-to-Text):** The raw database output (e.g., `[('Anna',)]`) is sent back to the AI to generate a polite, human-readable summary.
 
-Стек: Python, SQLite, OpenAI API (gpt-4o-mini), Streamlit (для веба).
+## ✨ Key Features
 
-Для чего это бизнесу: Владельцу не нужно ждать отчета от аналитика или ковыряться в Excel. Мгновенный доступ к метрикам на понятном языке.
+* **Interactive UI:** Built entirely in Python using Streamlit. Includes a sidebar for real-time database preview.
+* **Security & Rate Limiting:** Built-in authentication system. Implements `st.session_state` to track and limit API requests for demo users, protecting the OpenAI billing account.
+* **Graceful Error Handling:** Catches and displays database or syntax errors without crashing the application.
+* **Environment Protection:** API keys and admin passwords are securely managed via `.env` and Streamlit Secrets.
 
-Что покажет в портфолио: Умение работать с системными промптами (чтобы ИИ не галлюцинировал и писал строгий код), работу с БД и создание чистого UI без заморочек.
+## 🛠️ Tech Stack
+
+* **Language:** Python
+* **Frontend/Framework:** Streamlit
+* **AI Provider:** OpenAI API (`gpt-4o-mini` model with `temperature=0` for strict SQL generation)
+* **Database:** SQLite3
+
+---
+
+## 🚀 Local Installation & Setup
+
+If you want to run this project locally, follow these steps:
+
+**1. Clone the repository**
+```bash
+git clone [https://github.com/asimerole/Text-to-SQL-Dashboard.git](https://github.com/asimerole/Text-to-SQL-Dashboard.git)
+cd Text-to-SQL-Dashboard
+```
+
+**2. Install dependencies**
+```bash
+pip install -r requirements.txt
+```
+**3. Set up environment variables**
+Create a `.env` file in the root directory and add your credentials:
+```bash
+OPENAI_API_KEY=sk-your-openai-api-key
+ADM_PWD=your_admin_password
+```
+
+**4. Run the application**
+```bash
+streamlit run web.py
+```
+
+The app will automatically create a local `sales.db` with sample data on the first run.
+
+Created as a portfolio project showcasing AI integration into business workflows.
