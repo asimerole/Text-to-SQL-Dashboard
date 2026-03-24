@@ -40,9 +40,16 @@ def data_to_text(user_question, raw_data):
         You are a helpful business data assistant. 
         The user asked: "{user_question}".
         We queried the database and got this raw data back: {raw_data}.
-        Your task is to analyze this raw data and provide a clear, natural, and polite answer to the user in English.
+
+        Your task is to analyze this raw data and provide a clear, natural, and polite answer.
+
+        LANGUAGE RULES:
+        1. You MUST reply in the exact same language that the user used in their original question. (e.g., if they ask in Russian, reply in Russian; if in Spanish, reply in Spanish).
+        2. If the user's language is a very rare dialect or you are unsure, default to answering in English.
+
         If the raw data is empty, politely inform the user that no matching records were found.
-        """
+    """
+    
     response = client.chat.completions.create(
         model="gpt-4o-mini",
         messages=[
