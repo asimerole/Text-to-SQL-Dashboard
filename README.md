@@ -63,4 +63,10 @@ streamlit run web.py
 
 The app will automatically create a local `sales.db` with sample data on the first run.
 
+---
+
 Created as a portfolio project showcasing AI integration into business workflows.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
